@@ -98,9 +98,9 @@ This package exports standard inherits from node.js util module innode environme
         <p>Browser-friendly inheritance fully compatible with standard node.js<br><a href="http://nodejs.org/api/util.html#util_util_inherits_constructor_superconstructor" target="_blank" rel="external">inherits</a>.</p>
 <p>This package exports standard <code>inherits</code> from node.js <code>util</code> module in<br>node environment, but also provides alternative browser-friendly<br>implementation through <a href="https://gist.github.com/shtylman/4339901" target="_blank" rel="external">browser<br>field</a>. Alternative<br>implementation is a literal copy of standard one located in standalone<br>module to avoid requiring of <code>util</code>. It also has a shim for old<br>browsers with no <code>Object.create</code> support.</p>
 <p>While keeping you sure you are using standard <code>inherits</code><br>implementation in node.js environment, it allows bundlers such as<br><a href="https://github.com/substack/node-browserify" target="_blank" rel="external">browserify</a> to not<br>include full <code>util</code> package to your client code if all you need is<br>just <code>inherits</code> function. It worth, because browser shim for <code>util</code><br>package is large and <code>inherits</code> is often the single function you need<br>from it.</p>
-<p>It’s recommended to use this package instead of<br><code>require(&#39;util&#39;).inherits</code> for any code that has chances to be used<br>not only in node.js but in browser too.</p>
-<h2 id="usage">usage</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> inherits = <span class="built_in">require</span>(<span class="string">'inherits'</span>);</span><br><span class="line"><span class="comment">// then use exactly as the standard one</span></span><br></pre></td></tr></table></figure>
-<h2 id="note_on_version_~1-0">note on version ~1.0</h2><p>Version ~1.0 had completely different motivation and is not compatible<br>neither with 2.0 nor with standard node.js <code>inherits</code>.</p>
+<p>It&#x2019;s recommended to use this package instead of<br><code>require(&apos;util&apos;).inherits</code> for any code that has chances to be used<br>not only in node.js but in browser too.</p>
+<h2 id="usage">usage</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> inherits = <span class="built_in">require</span>(<span class="string">&apos;inherits&apos;</span>);</span><br><span class="line"><span class="comment">// then use exactly as the standard one</span></span><br></pre></td></tr></table></figure>
+<h2 id="note-on-version-~10">note on version ~1.0</h2><p>Version ~1.0 had completely different motivation and is not compatible<br>neither with 2.0 nor with standard node.js <code>inherits</code>.</p>
 <p>If you are using version ~1.0 and planning to switch to ~2.0, be<br>careful:</p>
 <ul>
 <li>new version uses <code>super_</code> instead of <code>super</code> for referencing<br>superclass</li>
@@ -111,7 +111,7 @@ This package exports standard inherits from node.js util module innode environme
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://crazybugliu.github.io/2015/11/12/测试/" data-id="cigw8hsbt000ey0hedss5bsoz" class="article-share-link" data-share="baidu" data-title="测试">分享到</a>
+        <a data-url="http://crazybugliu.github.io/2015/11/12/测试/" data-id="cigw94fhn000e2khei6flg0xr" class="article-share-link" data-share="baidu" data-title="测试">分享到</a>
       
 
       

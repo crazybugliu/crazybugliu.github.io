@@ -6,19 +6,28 @@
   
   <title>开发问题 | liu&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="目录&amp;lt;!-- toc --&amp;gt;
-框架和设计问题AppManage 不需要和AppCenter那样依赖那么多工程和jar包各个组件（工程）减少互相依赖，如：Hibernate的Mapping文件不要都放在com.dist.define工程下，使得一旦引用了define，其他没必要的工程也要引用建议放在各个模块内部或者是按层划分 com.dist.dap.define、com.dist.smartpla">
+  <meta name="description" content="&amp;#x76EE;&amp;#x5F55;
+&amp;lt;!-- toc --&amp;gt;
+
+&amp;#x6846;&amp;#x67B6;&amp;#x548C;&amp;#x8BBE;&amp;#x8BA1;&amp;#x95EE;&amp;#x9898;
+AppManage &amp;#x4E0D;&amp;#x9700;&amp;#x8981;&amp;#x548C;AppCenter&amp;#x90A3;&amp;#x6837;&amp;#x4F9D;&amp;#x8D56;&amp;#x90A3;&amp;#x4E48;&amp;#x591A;&amp;#x5D">
 <meta property="og:type" content="article">
 <meta property="og:title" content="开发问题">
 <meta property="og:url" content="http://crazybugliu.github.io/2015/11/12/开发问题/index.html">
 <meta property="og:site_name" content="liu's blog">
-<meta property="og:description" content="目录&amp;lt;!-- toc --&amp;gt;
-框架和设计问题AppManage 不需要和AppCenter那样依赖那么多工程和jar包各个组件（工程）减少互相依赖，如：Hibernate的Mapping文件不要都放在com.dist.define工程下，使得一旦引用了define，其他没必要的工程也要引用建议放在各个模块内部或者是按层划分 com.dist.dap.define、com.dist.smartpla">
+<meta property="og:description" content="&amp;#x76EE;&amp;#x5F55;
+&amp;lt;!-- toc --&amp;gt;
+
+&amp;#x6846;&amp;#x67B6;&amp;#x548C;&amp;#x8BBE;&amp;#x8BA1;&amp;#x95EE;&amp;#x9898;
+AppManage &amp;#x4E0D;&amp;#x9700;&amp;#x8981;&amp;#x548C;AppCenter&amp;#x90A3;&amp;#x6837;&amp;#x4F9D;&amp;#x8D56;&amp;#x90A3;&amp;#x4E48;&amp;#x591A;&amp;#x5D">
 <meta property="og:updated_time" content="2015-11-12T08:59:38.875Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="开发问题">
-<meta name="twitter:description" content="目录&amp;lt;!-- toc --&amp;gt;
-框架和设计问题AppManage 不需要和AppCenter那样依赖那么多工程和jar包各个组件（工程）减少互相依赖，如：Hibernate的Mapping文件不要都放在com.dist.define工程下，使得一旦引用了define，其他没必要的工程也要引用建议放在各个模块内部或者是按层划分 com.dist.dap.define、com.dist.smartpla">
+<meta name="twitter:description" content="&amp;#x76EE;&amp;#x5F55;
+&amp;lt;!-- toc --&amp;gt;
+
+&amp;#x6846;&amp;#x67B6;&amp;#x548C;&amp;#x8BBE;&amp;#x8BA1;&amp;#x95EE;&amp;#x9898;
+AppManage &amp;#x4E0D;&amp;#x9700;&amp;#x8981;&amp;#x548C;AppCenter&amp;#x90A3;&amp;#x6837;&amp;#x4F9D;&amp;#x8D56;&amp;#x90A3;&amp;#x4E48;&amp;#x591A;&amp;#x5D">
   
   
     <link rel="icon" href="/favicon.png">
@@ -95,35 +104,55 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>目录<br><!-- toc --></p>
-<h3 id="框架和设计问题">框架和设计问题</h3><h4 id="AppManage_不需要和AppCenter那样依赖那么多工程和jar包">AppManage 不需要和AppCenter那样依赖那么多工程和jar包</h4><p>各个组件（工程）减少互相依赖，<br>如：Hibernate的Mapping文件不要都放在com.dist.define工程下，使得一旦引用了define，其他没必要的工程也要引用<br><code>建议放在各个模块内部或者是按层划分 com.dist.dap.define、com.dist.smartplan.define、com.dist.project.define</code></p>
-<h4 id="产品引用DAP4_jar">产品引用DAP4 jar</h4><p>建议：DAP4只对产品层提供jar，如果产品层需要扩展DAP4代码，那么在产品层新起工程来扩展。项目层一样。</p>
-<h4 id="Controller层太重">Controller层太重</h4><p>业务逻辑主要应放在Service层，Controller层和WebService层主要负责数据的组织显示等</p>
-<h4 id="前后端逻辑要分离得清晰">前后端逻辑要分离得清晰</h4><p>目前前后的交互有以下几种情况</p>
+        <p>&#x76EE;&#x5F55;</p>
+<!-- toc -->
+<ul>
+<li><a href="#&#x6846;&#x67B6;&#x548C;&#x8BBE;&#x8BA1;&#x95EE;&#x9898;">&#x6846;&#x67B6;&#x548C;&#x8BBE;&#x8BA1;&#x95EE;&#x9898;</a><ul>
+<li><a href="#appmanage-&#x4E0D;&#x9700;&#x8981;&#x548C;appcenter&#x90A3;&#x6837;&#x4F9D;&#x8D56;&#x90A3;&#x4E48;&#x591A;&#x5DE5;&#x7A0B;&#x548C;jar&#x5305;">AppManage &#x4E0D;&#x9700;&#x8981;&#x548C;AppCenter&#x90A3;&#x6837;&#x4F9D;&#x8D56;&#x90A3;&#x4E48;&#x591A;&#x5DE5;&#x7A0B;&#x548C;jar&#x5305;</a></li>
+<li><a href="#&#x4EA7;&#x54C1;&#x5F15;&#x7528;dap4-jar">&#x4EA7;&#x54C1;&#x5F15;&#x7528;DAP4 jar</a></li>
+<li><a href="#controller&#x5C42;&#x592A;&#x91CD;">Controller&#x5C42;&#x592A;&#x91CD;</a></li>
+<li><a href="#&#x524D;&#x540E;&#x7AEF;&#x903B;&#x8F91;&#x8981;&#x5206;&#x79BB;&#x5F97;&#x6E05;&#x6670;">&#x524D;&#x540E;&#x7AEF;&#x903B;&#x8F91;&#x8981;&#x5206;&#x79BB;&#x5F97;&#x6E05;&#x6670;</a></li>
+<li><a href="#&#x524D;&#x7AEF;&#x6846;&#x67B6;&#x9700;&#x8981;&#x7EDF;&#x4E00;">&#x524D;&#x7AEF;&#x6846;&#x67B6;&#x9700;&#x8981;&#x7EDF;&#x4E00;</a></li>
+</ul>
+</li>
+<li><a href="#&#x6784;&#x5EFA;&#x548C;&#x534F;&#x4F5C;">&#x6784;&#x5EFA;&#x548C;&#x534F;&#x4F5C;</a><ul>
+<li><a href="#jar&#x5305;&#x4F9D;&#x8D56;-&#x96BE;&#x7BA1;&#x7406;">Jar&#x5305;&#x4F9D;&#x8D56; &#x96BE;&#x7BA1;&#x7406;</a></li>
+<li><a href="#&#x56E2;&#x961F;&#x5F00;&#x53D1;-&#x914D;&#x7F6E;&#x66F4;&#x6539;-&#x4E0D;&#x540C;&#x6B65;">&#x56E2;&#x961F;&#x5F00;&#x53D1; &#x914D;&#x7F6E;&#x66F4;&#x6539; &#x4E0D;&#x540C;&#x6B65;</a></li>
+</ul>
+</li>
+<li><a href="#&#x5176;&#x4ED6;">&#x5176;&#x4ED6;</a></li>
+<li><a href="#&#x6D4B;&#x8BD5;&#x95EE;&#x9898;">&#x6D4B;&#x8BD5;&#x95EE;&#x9898;</a></li>
+<li><a href="#&#x5EFA;&#x8BAE;&#x65B9;&#x6848;">&#x5EFA;&#x8BAE;&#x65B9;&#x6848;</a></li>
+</ul>
+<!-- tocstop -->
+<h3 id="&#x6846;&#x67B6;&#x548C;&#x8BBE;&#x8BA1;&#x95EE;&#x9898;">&#x6846;&#x67B6;&#x548C;&#x8BBE;&#x8BA1;&#x95EE;&#x9898;</h3><h4 id="appmanage-&#x4E0D;&#x9700;&#x8981;&#x548C;appcenter&#x90A3;&#x6837;&#x4F9D;&#x8D56;&#x90A3;&#x4E48;&#x591A;&#x5DE5;&#x7A0B;&#x548C;jar&#x5305;">AppManage &#x4E0D;&#x9700;&#x8981;&#x548C;AppCenter&#x90A3;&#x6837;&#x4F9D;&#x8D56;&#x90A3;&#x4E48;&#x591A;&#x5DE5;&#x7A0B;&#x548C;jar&#x5305;</h4><p>&#x5404;&#x4E2A;&#x7EC4;&#x4EF6;&#xFF08;&#x5DE5;&#x7A0B;&#xFF09;&#x51CF;&#x5C11;&#x4E92;&#x76F8;&#x4F9D;&#x8D56;&#xFF0C;<br>&#x5982;&#xFF1A;Hibernate&#x7684;Mapping&#x6587;&#x4EF6;&#x4E0D;&#x8981;&#x90FD;&#x653E;&#x5728;com.dist.define&#x5DE5;&#x7A0B;&#x4E0B;&#xFF0C;&#x4F7F;&#x5F97;&#x4E00;&#x65E6;&#x5F15;&#x7528;&#x4E86;define&#xFF0C;&#x5176;&#x4ED6;&#x6CA1;&#x5FC5;&#x8981;&#x7684;&#x5DE5;&#x7A0B;&#x4E5F;&#x8981;&#x5F15;&#x7528;<br><code>&#x5EFA;&#x8BAE;&#x653E;&#x5728;&#x5404;&#x4E2A;&#x6A21;&#x5757;&#x5185;&#x90E8;&#x6216;&#x8005;&#x662F;&#x6309;&#x5C42;&#x5212;&#x5206; com.dist.dap.define&#x3001;com.dist.smartplan.define&#x3001;com.dist.project.define</code></p>
+<h4 id="&#x4EA7;&#x54C1;&#x5F15;&#x7528;dap4-jar">&#x4EA7;&#x54C1;&#x5F15;&#x7528;DAP4 jar</h4><p>&#x5EFA;&#x8BAE;&#xFF1A;DAP4&#x53EA;&#x5BF9;&#x4EA7;&#x54C1;&#x5C42;&#x63D0;&#x4F9B;jar&#xFF0C;&#x5982;&#x679C;&#x4EA7;&#x54C1;&#x5C42;&#x9700;&#x8981;&#x6269;&#x5C55;DAP4&#x4EE3;&#x7801;&#xFF0C;&#x90A3;&#x4E48;&#x5728;&#x4EA7;&#x54C1;&#x5C42;&#x65B0;&#x8D77;&#x5DE5;&#x7A0B;&#x6765;&#x6269;&#x5C55;&#x3002;&#x9879;&#x76EE;&#x5C42;&#x4E00;&#x6837;&#x3002;</p>
+<h4 id="controller&#x5C42;&#x592A;&#x91CD;">Controller&#x5C42;&#x592A;&#x91CD;</h4><p>&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#x4E3B;&#x8981;&#x5E94;&#x653E;&#x5728;Service&#x5C42;&#xFF0C;Controller&#x5C42;&#x548C;WebService&#x5C42;&#x4E3B;&#x8981;&#x8D1F;&#x8D23;&#x6570;&#x636E;&#x7684;&#x7EC4;&#x7EC7;&#x663E;&#x793A;&#x7B49;</p>
+<h4 id="&#x524D;&#x540E;&#x7AEF;&#x903B;&#x8F91;&#x8981;&#x5206;&#x79BB;&#x5F97;&#x6E05;&#x6670;">&#x524D;&#x540E;&#x7AEF;&#x903B;&#x8F91;&#x8981;&#x5206;&#x79BB;&#x5F97;&#x6E05;&#x6670;</h4><p>&#x76EE;&#x524D;&#x524D;&#x540E;&#x7684;&#x4EA4;&#x4E92;&#x6709;&#x4EE5;&#x4E0B;&#x51E0;&#x79CD;&#x60C5;&#x51B5;</p>
 <blockquote>
 <ol>
-<li>直接返回视图 并 设置request的Attribute的值作为数据<br>通过在JSP页面里面嵌入Java代码处理和渲染视图</li>
-<li>返回Json数据<br>在JavaScript里渲染视图。脚本有直接嵌入JSP或者独立到js文件中</li>
+<li>&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#x89C6;&#x56FE; &#x5E76; &#x8BBE;&#x7F6E;request&#x7684;Attribute&#x7684;&#x503C;&#x4F5C;&#x4E3A;&#x6570;&#x636E;<br>&#x901A;&#x8FC7;&#x5728;JSP&#x9875;&#x9762;&#x91CC;&#x9762;&#x5D4C;&#x5165;Java&#x4EE3;&#x7801;&#x5904;&#x7406;&#x548C;&#x6E32;&#x67D3;&#x89C6;&#x56FE;</li>
+<li>&#x8FD4;&#x56DE;Json&#x6570;&#x636E;<br>&#x5728;JavaScript&#x91CC;&#x6E32;&#x67D3;&#x89C6;&#x56FE;&#x3002;&#x811A;&#x672C;&#x6709;&#x76F4;&#x63A5;&#x5D4C;&#x5165;JSP&#x6216;&#x8005;&#x72EC;&#x7ACB;&#x5230;js&#x6587;&#x4EF6;&#x4E2D;</li>
 </ol>
 </blockquote>
-<p><code>建议都采用返回Json数据的方式，渲染使用JS来完成</code></p>
-<h4 id="前端框架需要统一">前端框架需要统一</h4><p>js引用混乱，Jquery就有多个版本<br>同样的组件可能用到不同的框架里面的，如tree<br>以及风格样式</p>
-<h3 id="构建和协作">构建和协作</h3><h4 id="Jar包依赖_难管理">Jar包依赖 难管理</h4><p>同样的Jar，不同的框架中，存在版本冲突<br>无法清晰看出都引用了哪些框架或库</p>
-<h4 id="团队开发_配置更改_不同步">团队开发 配置更改 不同步</h4><p>Eclipse的配置信息涉及到使用者本地环境，不适合提交，如引用配置<br>每次都要手动配置library 和 buildpath、deployment 等<br><code>可以通过Workspace--&gt;Linked Resource变量的方式解决</code></p>
-<h3 id="其他">其他</h3><ul>
-<li>多余的 JSP 和 JavaScript文件清理</li>
+<p><code>&#x5EFA;&#x8BAE;&#x90FD;&#x91C7;&#x7528;&#x8FD4;&#x56DE;Json&#x6570;&#x636E;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x6E32;&#x67D3;&#x4F7F;&#x7528;JS&#x6765;&#x5B8C;&#x6210;</code></p>
+<h4 id="&#x524D;&#x7AEF;&#x6846;&#x67B6;&#x9700;&#x8981;&#x7EDF;&#x4E00;">&#x524D;&#x7AEF;&#x6846;&#x67B6;&#x9700;&#x8981;&#x7EDF;&#x4E00;</h4><p>js&#x5F15;&#x7528;&#x6DF7;&#x4E71;&#xFF0C;Jquery&#x5C31;&#x6709;&#x591A;&#x4E2A;&#x7248;&#x672C;<br>&#x540C;&#x6837;&#x7684;&#x7EC4;&#x4EF6;&#x53EF;&#x80FD;&#x7528;&#x5230;&#x4E0D;&#x540C;&#x7684;&#x6846;&#x67B6;&#x91CC;&#x9762;&#x7684;&#xFF0C;&#x5982;tree<br>&#x4EE5;&#x53CA;&#x98CE;&#x683C;&#x6837;&#x5F0F;</p>
+<h3 id="&#x6784;&#x5EFA;&#x548C;&#x534F;&#x4F5C;">&#x6784;&#x5EFA;&#x548C;&#x534F;&#x4F5C;</h3><h4 id="jar&#x5305;&#x4F9D;&#x8D56;-&#x96BE;&#x7BA1;&#x7406;">Jar&#x5305;&#x4F9D;&#x8D56; &#x96BE;&#x7BA1;&#x7406;</h4><p>&#x540C;&#x6837;&#x7684;Jar&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x6846;&#x67B6;&#x4E2D;&#xFF0C;&#x5B58;&#x5728;&#x7248;&#x672C;&#x51B2;&#x7A81;<br>&#x65E0;&#x6CD5;&#x6E05;&#x6670;&#x770B;&#x51FA;&#x90FD;&#x5F15;&#x7528;&#x4E86;&#x54EA;&#x4E9B;&#x6846;&#x67B6;&#x6216;&#x5E93;</p>
+<h4 id="&#x56E2;&#x961F;&#x5F00;&#x53D1;-&#x914D;&#x7F6E;&#x66F4;&#x6539;-&#x4E0D;&#x540C;&#x6B65;">&#x56E2;&#x961F;&#x5F00;&#x53D1; &#x914D;&#x7F6E;&#x66F4;&#x6539; &#x4E0D;&#x540C;&#x6B65;</h4><p>Eclipse&#x7684;&#x914D;&#x7F6E;&#x4FE1;&#x606F;&#x6D89;&#x53CA;&#x5230;&#x4F7F;&#x7528;&#x8005;&#x672C;&#x5730;&#x73AF;&#x5883;&#xFF0C;&#x4E0D;&#x9002;&#x5408;&#x63D0;&#x4EA4;&#xFF0C;&#x5982;&#x5F15;&#x7528;&#x914D;&#x7F6E;<br>&#x6BCF;&#x6B21;&#x90FD;&#x8981;&#x624B;&#x52A8;&#x914D;&#x7F6E;library &#x548C; buildpath&#x3001;deployment &#x7B49;<br><code>&#x53EF;&#x4EE5;&#x901A;&#x8FC7;Workspace--&gt;Linked Resource&#x53D8;&#x91CF;&#x7684;&#x65B9;&#x5F0F;&#x89E3;&#x51B3;</code></p>
+<h3 id="&#x5176;&#x4ED6;">&#x5176;&#x4ED6;</h3><ul>
+<li>&#x591A;&#x4F59;&#x7684; JSP &#x548C; JavaScript&#x6587;&#x4EF6;&#x6E05;&#x7406;</li>
 </ul>
-<h3 id="测试问题">测试问题</h3><p>JUnit 自动化测试，可集成于其他构建工具。当前 可以针对于重要的需要测试的部分写，不用大面积展开。</p>
-<h3 id="建议方案">建议方案</h3><ul>
-<li>建议采用开源成熟的框架统一前端<br>如BootStrap、AmazingUI、ZTree，再根据我们的情况定制</li>
-<li>Gradle自动构建，解决Jar包依赖、自动化配置、测试等问题——需要建立私服仓库<br> 需要考虑会不会搞得太复杂，增加了开发工作量。ECM团队有在用持续集成的工具，可交流一下</li>
+<h3 id="&#x6D4B;&#x8BD5;&#x95EE;&#x9898;">&#x6D4B;&#x8BD5;&#x95EE;&#x9898;</h3><p>JUnit &#x81EA;&#x52A8;&#x5316;&#x6D4B;&#x8BD5;&#xFF0C;&#x53EF;&#x96C6;&#x6210;&#x4E8E;&#x5176;&#x4ED6;&#x6784;&#x5EFA;&#x5DE5;&#x5177;&#x3002;&#x5F53;&#x524D; &#x53EF;&#x4EE5;&#x9488;&#x5BF9;&#x4E8E;&#x91CD;&#x8981;&#x7684;&#x9700;&#x8981;&#x6D4B;&#x8BD5;&#x7684;&#x90E8;&#x5206;&#x5199;&#xFF0C;&#x4E0D;&#x7528;&#x5927;&#x9762;&#x79EF;&#x5C55;&#x5F00;&#x3002;</p>
+<h3 id="&#x5EFA;&#x8BAE;&#x65B9;&#x6848;">&#x5EFA;&#x8BAE;&#x65B9;&#x6848;</h3><ul>
+<li>&#x5EFA;&#x8BAE;&#x91C7;&#x7528;&#x5F00;&#x6E90;&#x6210;&#x719F;&#x7684;&#x6846;&#x67B6;&#x7EDF;&#x4E00;&#x524D;&#x7AEF;<br>&#x5982;BootStrap&#x3001;AmazingUI&#x3001;ZTree&#xFF0C;&#x518D;&#x6839;&#x636E;&#x6211;&#x4EEC;&#x7684;&#x60C5;&#x51B5;&#x5B9A;&#x5236;</li>
+<li>Gradle&#x81EA;&#x52A8;&#x6784;&#x5EFA;&#xFF0C;&#x89E3;&#x51B3;Jar&#x5305;&#x4F9D;&#x8D56;&#x3001;&#x81EA;&#x52A8;&#x5316;&#x914D;&#x7F6E;&#x3001;&#x6D4B;&#x8BD5;&#x7B49;&#x95EE;&#x9898;&#x2014;&#x2014;&#x9700;&#x8981;&#x5EFA;&#x7ACB;&#x79C1;&#x670D;&#x4ED3;&#x5E93;<br> &#x9700;&#x8981;&#x8003;&#x8651;&#x4F1A;&#x4E0D;&#x4F1A;&#x641E;&#x5F97;&#x592A;&#x590D;&#x6742;&#xFF0C;&#x589E;&#x52A0;&#x4E86;&#x5F00;&#x53D1;&#x5DE5;&#x4F5C;&#x91CF;&#x3002;ECM&#x56E2;&#x961F;&#x6709;&#x5728;&#x7528;&#x6301;&#x7EED;&#x96C6;&#x6210;&#x7684;&#x5DE5;&#x5177;&#xFF0C;&#x53EF;&#x4EA4;&#x6D41;&#x4E00;&#x4E0B;</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://crazybugliu.github.io/2015/11/12/开发问题/" data-id="cigw8hsby000iy0hegxj3pfmy" class="article-share-link" data-share="baidu" data-title="开发问题">分享到</a>
+        <a data-url="http://crazybugliu.github.io/2015/11/12/开发问题/" data-id="cigw94fhq000i2kheman29hvy" class="article-share-link" data-share="baidu" data-title="开发问题">分享到</a>
       
 
       
