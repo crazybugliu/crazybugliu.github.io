@@ -412,7 +412,7 @@ body {
   width: 100%;
   height: 100%;
   background: #21282e;
-  background: url("images/banner.jpg") center #000;
+  background: url("images/banner2.jpg") center #000;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -446,7 +446,7 @@ body {
   font-size: 16px;
   line-height: 16px;
   letter-spacing: 1px;
-  color: #687e91;
+  color: #fff;
 }
 #subtitle-wrap {
   margin-top: 16px;
@@ -459,9 +459,9 @@ body {
 .main-nav-link {
   float: left;
   color: #fff;
-  opacity: 0.6;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
-  filter: alpha(opacity=60);
+  opacity: 0.9;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+  filter: alpha(opacity=90);
   text-decoration: none;
   text-shadow: 0 1px rgba(0,0,0,0.2);
   -webkit-transition: opacity 0.2s;
@@ -489,7 +489,7 @@ body {
   cursor: pointer;
 }
 .main-nav-link {
-  font-weight: 300;
+  font-weight: bold;
   letter-spacing: 1px;
 }
 @media screen and (max-width: 479px) {
