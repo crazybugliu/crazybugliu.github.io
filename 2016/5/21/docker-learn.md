@@ -1,4 +1,16 @@
-<p>@(学习)[docker, noteton]</p>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>docker学习笔记</title>
+  <link rel="stylesheet" href="http://app.classeur.io/base-min.css" />
+  <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+
+<body>
+  <div class="export-container"><p>@(学习)[docker, noteton]</p>
 <h2 id="docker学习笔记">docker学习笔记</h2>
 <p>GitBook <a href="https://www.gitbook.com/book/yeasy/docker_practice/details">Docker —— 从入门到实践</a></p>
 <p>目录 ：</p>
@@ -137,4 +149,7 @@ $ docker-enter &lt;container&gt; ls
 <h4 id="运行dockerui">运行DockerUI</h4>
 <pre class=" language-bash"><code class="prism  language-bash">docker run <span class="token operator">-</span>d <span class="token operator">-</span>p <span class="token number">9000</span><span class="token punctuation">:</span><span class="token number">9000</span> <span class="token operator">--</span>privileged <span class="token operator">-</span><span class="token function">v</span> <span class="token operator">/</span>var<span class="token operator">/</span>run<span class="token operator">/</span>docker<span class="token punctuation">.</span>sock<span class="token punctuation">:</span><span class="token operator">/</span>var<span class="token operator">/</span>run<span class="token operator">/</span>docker<span class="token punctuation">.</span>sock uifd<span class="token operator">/</span>ui<span class="token operator">-</span><span class="token keyword">for</span><span class="token operator">-</span>docker
 </code></pre>
-<p>打开  http://:9000</p>
+<p>打开  http://:9000</p></div>
+</body>
+
+</html>
